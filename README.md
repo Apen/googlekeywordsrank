@@ -1,5 +1,5 @@
 Google Keywords Rank API
-==================
+------------
 
 Basic PHP class to get a the rank of your website for a keyword
 
@@ -16,7 +16,7 @@ Usage
 	$keywordsPositions = $gRank->getKeywordsArrayRank($keywords);
 	
 	foreach ($keywordsPositions as $keywords) {
-		echo 'For teh keyword "' . $keywords[0] . '": ';
+		echo 'For the keyword "' . $keywords[0] . '": ';
 		if ($keywords[1] == 0) {
 			echo 'you are not in the ' . ($maxPages * 10) . ' first results';
 		} else {
