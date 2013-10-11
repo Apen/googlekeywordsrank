@@ -96,7 +96,7 @@ class GoogleKeywordsRank
 				$makeUrl = $baseUrl . ($page * 10);
 				$getContentCode = $this->getContent($makeUrl);
 				if ($getContentCode == 200) {
-					if (preg_match_all('/<h3 class="r"><a href="([^"]+)".*?>.+?<\/a>/', $this->response, $results) > 0) {
+					if (preg_match_all('/<h3 class="r"><a href="([^"]+)".*?>.+?<\/a><\/h3><div class="s"><div class="kv" style=".*?">.+?<span class="flc"> \-/', $this->response, $results) > 0) {
 						foreach ($results[1] as $link) {
 							$link = preg_replace('(^http://|/$)', '', $link);
 							$index++;
