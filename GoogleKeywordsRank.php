@@ -5,8 +5,7 @@
  *
  * @author CERDAN Yohann <cerdanyohann@yahoo.fr>
  */
-class GoogleKeywordsRank
-{
+class GoogleKeywordsRank {
 	/** URL of the website to check in the google results **/
 	private $url = '';
 
@@ -22,9 +21,9 @@ class GoogleKeywordsRank
 	/**
 	 * Constuctor
 	 *
-	 * @param string $url        url of the site
-	 * @param int    $maxPages   max pages
-	 * @param string $extension  extension of the domain
+	 * @param string $url       url of the site
+	 * @param int    $maxPages  max pages
+	 * @param string $extension extension of the domain
 	 */
 	public function __construct($url, $maxPages = 1, $extension = 'fr') {
 		$this->url = str_replace('http://www.', '', $url);
@@ -96,8 +95,9 @@ class GoogleKeywordsRank
 				$makeUrl = $baseUrl . ($page * 10);
 				$getContentCode = $this->getContent($makeUrl);
 				if ($getContentCode == 200) {
-					if (preg_match_all('/<h3 class="r"><a href="([^"]+)".*?>.+?<\/a><\/h3><div class="s"><div class="kv" style=".*?">.+?<span class="flc"> \-/', $this->response, $results) > 0) {
+					if (preg_match_all('/<div class="kv" style=".*?">(.+?)<div/', $this->response, $results) > 0) {
 						foreach ($results[1] as $link) {
+							$link = strip_tags($link);
 							$link = preg_replace('(^http://|/$)', '', $link);
 							$index++;
 							if (strlen(stristr($link, $this->url)) > 0) {
